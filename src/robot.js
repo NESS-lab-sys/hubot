@@ -430,7 +430,6 @@ class Robot {
 
     const express = require('express')
     const basicAuth = require('express-basic-auth')
-    const multipart = require('connect-multiparty')
 
     const app = express()
 
@@ -448,9 +447,6 @@ class Robot {
 
     app.use(express.json({ limit }))
     app.use(express.urlencoded({ limit, parameterLimit: paramLimit, extended: true }))
-    // replacement for deprecated express.multipart/connect.multipart
-    // limit to 100mb, as per the old behavior
-    app.use(multipart({ maxFilesSize: 100 * 1024 * 1024 }))
 
     if (stat) {
       app.use(express.static(stat))
